@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -47,6 +48,11 @@ class ItemsActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        refreshList()
+        super.onResume()
+    }
+
     private fun refreshList(){
         rv_lists.adapter =ItemsAdapter(this,dbHandler.getItems())
     }
@@ -56,6 +62,7 @@ class ItemsActivity : AppCompatActivity() {
 
         class ViewHolder(v : View) :RecyclerView.ViewHolder(v){
             val text :TextView = v.findViewById(R.id.tv_item_text)
+            val isChecked :CheckBox = v.findViewById(R.id.cb_item)
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsAdapter.ViewHolder {

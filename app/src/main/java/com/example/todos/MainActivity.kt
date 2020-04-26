@@ -14,7 +14,6 @@ class MainActivity : AppCompatActivity() {
         b_list.setOnClickListener{
             val intent = Intent(this,ItemsActivity::class.java)
             startActivity(intent)
-            finish()
         }
     }
 }
