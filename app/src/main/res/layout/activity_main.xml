@@ -7,11 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_lists"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
     <Button
         android:id="@+id/b_list"
         android:layout_width="wrap_content"

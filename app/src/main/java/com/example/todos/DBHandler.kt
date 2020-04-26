@@ -45,10 +45,10 @@ class DBHandler(val context: Context) : SQLiteOpenHelper(context, DB_NAME,null, 
         if(queryResult.moveToFirst()){
             do{
                 val item =Item()
-                item.id =queryResult.getLong(queryResult.getColumnIndex(COL_ID))
+                //item.id =queryResult.getLong(queryResult.getColumnIndex(COL_ID))
                 item.text=queryResult.getString(queryResult.getColumnIndex(COL_TEXT))
-                item.category_id =queryResult.getLong(queryResult.getColumnIndex(COL_CATEGORY_ID))
-                item.isCompleted = queryResult.getInt(queryResult.getColumnIndex(COL_IS_COMPLETED))==1
+                //item.category_id =queryResult.getLong(queryResult.getColumnIndex(COL_CATEGORY_ID))
+                //item.isCompleted = queryResult.getInt(queryResult.getColumnIndex(COL_IS_COMPLETED))==1
                 result.add(item)
             }while(queryResult.moveToNext())
         }
