@@ -7,5 +7,5 @@ class Item{
     //var updatedAt = ""
     var isCompleted = false
     var comletedAt = ""
-    var category : Long = -1
+    var category_id : Long = -1
 }
