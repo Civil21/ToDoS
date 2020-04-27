@@ -17,7 +17,6 @@ class ItemsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_items)
         setSupportActionBar(items_toolbar)
-        title = "Список завдань"
         dbHandler =DBHandler(this)
 
         rv_lists.layoutManager = LinearLayoutManager(this)
@@ -26,12 +25,15 @@ class ItemsActivity : AppCompatActivity() {
             val dialog = AlertDialog.Builder(this)
             dialog.setTitle("Додати нове завдання")
             val view = layoutInflater.inflate(R.layout.item_dialog,null)
-            val text =view.findViewById<EditText>(R.id.et_item_text)
+            val et_text =view.findViewById<EditText>(R.id.et_item_text)
+            val et_category =view.findViewById<EditText>(R.id.et_item_category)
             dialog.setView(view)
             dialog.setPositiveButton("Додати") { _: DialogInterface, _: Int->
-                if(text.text.isNotEmpty()){
+                if(et_text.text.isNotEmpty()){
                     val item =Item()
-                    item.text = text.text.toString()
+                    item.text = et_text.text.toString()
+                    val category = dbHandler.findByNameCategory(et_category.text.toString().toLowerCase())
+                    item.category_id = category.id
                     dbHandler.addItem(item)
                     refreshList()
                 }
@@ -49,7 +51,7 @@ class ItemsActivity : AppCompatActivity() {
     }
 
     private fun refreshList(){
-        rv_lists.adapter =ItemsAdapter(this,dbHandler.getItems())
+       rv_lists.adapter =ItemsAdapter(this,dbHandler.getItems())
     }
 
 

@@ -7,12 +7,19 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var dbHandler: DBHandler
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         b_list.setOnClickListener{
             val intent = Intent(this,ItemsActivity::class.java)
+            startActivity(intent)
+        }
+
+        b_categories.setOnClickListener {
+            val intent = Intent(this,CategoriesActivity::class.java)
             startActivity(intent)
         }
     }
