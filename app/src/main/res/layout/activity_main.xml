@@ -6,18 +6,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
+    
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_lists"
         android:layout_width="match_parent"
-        android:layout_height="676dp" />
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp" />
 
+    <LinearLayout
+        android:id="@+id/buttons_container"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10px">
     <Button
         android:id="@+id/b_list"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="3dp"
-        android:text="Весь список" />
+        android:text="Весь список"
+        android:layout_weight="1"
+        android:layout_marginRight="20px"
+        android:layout_marginLeft="20px"
+        android:background="@drawable/button"
+        android:textColor="@color/colorTextAlt"
+        android:textStyle="bold"
+        />
+    <Button
+        android:id="@+id/b_categories"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Всі категорії"
+        android:layout_weight="1"
+        android:background="@drawable/button"
+        android:textColor="@color/colorTextAlt"
+        android:textStyle="bold"
+        />
+    <Button
+        android:id="@+id/b_graph"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Графіки"
+        android:layout_weight="1"
+        android:layout_marginRight="20px"
+        android:layout_marginLeft="20px"
+        android:background="@drawable/button"
+        android:textColor="@color/colorTextAlt"
+        android:textStyle="bold"
+        />
+    </LinearLayout>
 </RelativeLayout>
