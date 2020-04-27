@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todos.models.Item
 import kotlinx.android.synthetic.main.activity_items.*
 
-class ItemsActivity : AppCompatActivity() {
+class ItemsActivity : ItemActivity() {
 
     lateinit var dbHandler: DBHandler
 
@@ -50,7 +50,7 @@ class ItemsActivity : AppCompatActivity() {
         super.onResume()
     }
 
-    private fun refreshList(){
+    override fun refreshList(){
        rv_lists.adapter =ItemsAdapter(this,dbHandler.getItems())
     }
 

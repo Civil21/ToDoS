@@ -12,7 +12,7 @@ import com.example.todos.models.Item
 import kotlinx.android.synthetic.main.rv_item.view.*
 import java.util.*
 
-class ItemsAdapter(val activity : AppCompatActivity, val list: MutableList<Item>):
+class ItemsAdapter(val activity : ItemActivity, val list: MutableList<Item>):
 
     RecyclerView.Adapter<ItemsAdapter.ViewHolder>(){
 
@@ -33,26 +33,19 @@ class ItemsAdapter(val activity : AppCompatActivity, val list: MutableList<Item>
         }else{
             holder.tv_time.text = "Створено "+list[position].createdAt
         }
-
         holder.cb_item.setOnClickListener {
             list[position].isCompleted = !list[position].isCompleted
             if (list[position].isCompleted) {
                 list[position].comletedAt = Calendar.getInstance().getTime().toString()
-                if(activity is MainActivity){
-                    list.removeAt(position)
-                }else {
-                    holder.tv_time.text = "Завершено " + list[position].comletedAt
-                }
             } else {
                 list[position].comletedAt = ""
-                holder.tv_time.text = "Створено "+list[position].createdAt
             }
-            holder.cb_item.isChecked = list[position].isCompleted
             DBHandler(activity).updateItem(list[position])
+            activity.refreshList()
         }
         holder.iv_delete.setOnClickListener{
             DBHandler(activity).deleteItem(list[position].id)
-            list.removeAt(position)
+            activity.refreshList()
         }
     }
 
