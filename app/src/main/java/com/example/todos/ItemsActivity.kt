@@ -37,8 +37,11 @@ class ItemsActivity : ItemActivity() {
                 if(et_text.text.isNotEmpty()){
                     val item =Item()
                     item.text = et_text.text.toString()
-                    val category = dbHandler.findByNameCategory(et_category.text.toString().toLowerCase())
-                    item.category_id = category.id
+                    if(et_category.text.isNotEmpty()) {
+                        val category =
+                            dbHandler.findByNameCategory(et_category.text.toString().toLowerCase())
+                        item.category_id = category.id
+                    }
                     dbHandler.addItem(item)
                     refreshList()
                 }

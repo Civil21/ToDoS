@@ -26,7 +26,7 @@ class CategoriesActivity : AppCompatActivity() {
         super.onResume()
     }
 
-    private fun refreshList(){
+    fun refreshList(){
         rv_categories.adapter =CategoriesAdapter(this,dbHandler.getCategories())
     }
 }

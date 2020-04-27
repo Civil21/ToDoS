@@ -149,6 +149,12 @@ class DBHandler(val context: Context) : SQLiteOpenHelper(context, DB_NAME,null, 
         return result!=(-1).toLong()
     }
 
+    fun deleteCategory(categoryId: Long){
+        val db = writableDatabase
+        db.delete(TABLE_ITEMS,"$COL_CATEGORY_ID=?", arrayOf(categoryId.toString()))
+        db.delete(TABLE_CATEGORIES,"$COL_ID=?", arrayOf(categoryId.toString()))
+    }
+
     fun findByNameCategory(name: String): Category {
         val db =readableDatabase
         var queryResult = db.rawQuery("SELECT * FROM $TABLE_CATEGORIES WHERE $COL_NAME = ?",
