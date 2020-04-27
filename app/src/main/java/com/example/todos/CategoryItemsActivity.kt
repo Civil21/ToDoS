@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_category_items.*
 import kotlinx.android.synthetic.main.activity_items.*
 
-class CategoryItemsActivity : AppCompatActivity() {
+class CategoryItemsActivity : ItemActivity() {
 
     lateinit var dbHandler : DBHandler
     var CategoryId : Long = -1
@@ -25,7 +25,7 @@ class CategoryItemsActivity : AppCompatActivity() {
         super.onResume()
     }
 
-    private fun refreshList(){
+    override fun refreshList(){
         rv_category_lists.adapter =ItemsAdapter(this,dbHandler.getCategoryItems(CategoryId))
     }
 }

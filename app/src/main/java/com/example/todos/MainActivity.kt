@@ -4,9 +4,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_items.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.rv_lists
 
-class MainActivity : AppCompatActivity() {
+abstract class ItemActivity : AppCompatActivity() {
+    open fun refreshList(){}
+}
+
+class MainActivity : ItemActivity() {
 
     lateinit var dbHandler: DBHandler
 
@@ -34,7 +40,9 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
     }
 
-    private fun refreshList(){
-        rv_lists.adapter =ItemsAdapter(this,dbHandler.getChekedItems(0))
+    override fun refreshList() {
+        rv_lists.adapter = ItemsAdapter(this,dbHandler.getChekedItems(0))
     }
+
+
 }
