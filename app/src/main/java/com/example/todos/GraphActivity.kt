@@ -12,16 +12,15 @@ class GraphActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pre)
-        setSupportActionBar(graph_toolbar)
-        title = "Досягнення"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         ic_logo.startAnimation(AnimationUtils.loadAnimation(this,R.anim.splash_in))
         Handler().postDelayed({
             ic_logo.startAnimation(AnimationUtils.loadAnimation(this,R.anim.splash_out))
             Handler().postDelayed({
                 ic_logo.visibility = View.GONE
+                setSupportActionBar(graph_toolbar)
+                title = "Досягнення"
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
             },500)
         },1500)
 

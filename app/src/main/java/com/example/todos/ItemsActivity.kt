@@ -21,8 +21,6 @@ class ItemsActivity : ItemActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         dbHandler =DBHandler(this)
-        items = dbHandler.getItems()
-        title = "Список Завдань "+items.size+"("+items.count{item -> item.isCompleted}+")"
 
         rv_lists.layoutManager = LinearLayoutManager(this)
 
@@ -59,7 +57,9 @@ class ItemsActivity : ItemActivity() {
     }
 
     override fun refreshList(){
-       rv_lists.adapter =ItemsAdapter(this,dbHandler.getItems())
+        items = dbHandler.getItems()
+        rv_lists.adapter =ItemsAdapter(this,items)
+        title = "Список Завдань "+items.size+"("+items.count{item -> item.isCompleted}+")"
     }
 
 

@@ -13,13 +13,16 @@ class CategoryItemsActivity : ItemActivity() {
     lateinit var dbHandler : DBHandler
     var CategoryId : Long = -1
     var CategoryName : String = ""
+    var items : MutableList<Item> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category_items)
         setSupportActionBar(category_toolbar)
         CategoryName = intent.getStringExtra("intent_category_name")
-        title = CategoryName
+
+
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -59,6 +62,8 @@ class CategoryItemsActivity : ItemActivity() {
     }
 
     override fun refreshList(){
+        items = dbHandler.getCategoryItems(CategoryId)
+        title = CategoryName+" ("+items.size+"/"+items.count{item -> item.isCompleted}+")"
         rv_category_lists.adapter =ItemsAdapter(this,dbHandler.getCategoryItems(CategoryId))
     }
 }
