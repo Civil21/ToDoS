@@ -14,6 +14,8 @@ class CategoriesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_categories)
         setSupportActionBar(categories_toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         rv_categories.layoutManager = LinearLayoutManager(this)
         dbHandler =DBHandler(this)

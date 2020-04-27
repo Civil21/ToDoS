@@ -14,6 +14,11 @@ class CategoryItemsActivity : ItemActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category_items)
+        setSupportActionBar(category_toolbar)
+        title = intent.getStringExtra("intent_category_name")
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         dbHandler =DBHandler(this)
         CategoryId = intent.getLongExtra("intent_category_id",-1)
 

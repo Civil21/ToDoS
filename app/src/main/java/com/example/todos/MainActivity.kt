@@ -33,6 +33,11 @@ class MainActivity : ItemActivity() {
             val intent = Intent(this,CategoriesActivity::class.java)
             startActivity(intent)
         }
+
+        b_graph.setOnClickListener {
+            val intent = Intent(this,GraphActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onResume() {

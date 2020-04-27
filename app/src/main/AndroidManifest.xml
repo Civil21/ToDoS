@@ -9,8 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CategoryItemsActivity"></activity>
-        <activity android:name=".CategoriesActivity" />
+        <activity android:name=".CategoryItemsActivity"
+            android:parentActivityName=".CategoriesActivity"></activity>
+        <activity android:name=".CategoriesActivity"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".PreActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,9 +20,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ItemsActivity" />
+        <activity android:name=".ItemsActivity"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".MainActivity" />
-        <activity android:name=".GraphActivity" />
+        <activity android:name=".GraphActivity"
+            android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>

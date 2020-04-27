@@ -15,7 +15,6 @@
         android:layout_height="150dp"
         android:background="@drawable/border"
         app:titleTextColor="@color/colorTextAlt"
-        app:title="Список Завдань"
         />
 
     <androidx.recyclerview.widget.RecyclerView

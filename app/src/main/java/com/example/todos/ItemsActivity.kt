@@ -13,11 +13,19 @@ class ItemsActivity : ItemActivity() {
 
     lateinit var dbHandler: DBHandler
 
+    var items : MutableList<Item> = ArrayList()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_items)
         setSupportActionBar(items_toolbar)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         dbHandler =DBHandler(this)
+        items = dbHandler.getItems()
+        title = "Список Завдань "+items.size+"("+items.count{item -> item.isCompleted}+")"
+
 
         rv_lists.layoutManager = LinearLayoutManager(this)
 

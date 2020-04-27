@@ -23,10 +23,11 @@ class CategoriesAdapter(val activity : CategoriesActivity, val list :MutableList
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tv_name.text = list[position].name
-        holder.tv_count.text = DBHandler(activity).getCategoryItems(list[position].id).size.toString()
+        holder.tv_count.text = DBHandler(activity).getCategoryItems(list[position].id).size.toString()+"("+DBHandler(activity).getCategoryItems(list[position].id).count{item -> item.isCompleted }+")"
         holder.tv_name.setOnClickListener {
             val intent = Intent(activity,CategoryItemsActivity::class.java)
             intent.putExtra("intent_category_id",list[position].id)
+            intent.putExtra("intent_category_name",list[position].name)
             activity.startActivity(intent)
         }
     }
