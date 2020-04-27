@@ -20,6 +20,7 @@
         </activity>
         <activity android:name=".ItemsActivity" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".GraphActivity" />
     </application>
 
 </manifest>
