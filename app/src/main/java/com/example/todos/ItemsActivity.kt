@@ -1,7 +1,6 @@
 package com.example.todos
 
 import android.content.DialogInterface
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
@@ -12,7 +11,6 @@ import kotlinx.android.synthetic.main.activity_items.*
 class ItemsActivity : ItemActivity() {
 
     lateinit var dbHandler: DBHandler
-
     var items : MutableList<Item> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +23,6 @@ class ItemsActivity : ItemActivity() {
         dbHandler =DBHandler(this)
         items = dbHandler.getItems()
         title = "Список Завдань "+items.size+"("+items.count{item -> item.isCompleted}+")"
-
 
         rv_lists.layoutManager = LinearLayoutManager(this)
 

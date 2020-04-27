@@ -1,12 +1,14 @@
 package com.example.todos
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todos.models.Item
 import kotlinx.android.synthetic.main.rv_item.view.*
@@ -42,6 +44,30 @@ class ItemsAdapter(val activity : ItemActivity, val list: MutableList<Item>):
             }
             DBHandler(activity).updateItem(list[position])
             activity.refreshList()
+        }
+        holder.tv_text.setOnClickListener{
+            val dialog = AlertDialog.Builder(activity)
+            dialog.setTitle("Оновлення")
+            val view = activity.layoutInflater.inflate(R.layout.item_dialog,null)
+            val et_text =view.findViewById<EditText>(R.id.et_item_text)
+            val et_category =view.findViewById<EditText>(R.id.et_item_category)
+            et_text.setText(list[position].text)
+            et_category.setText(DBHandler(activity).findByIdCategory(list[position].category_id)?.name)
+            dialog.setView(view)
+            dialog.setPositiveButton("Оновити") { _: DialogInterface, _: Int->
+                if(et_text.text.isNotEmpty()){
+                    val item = list[position]
+                    item.text = et_text.text.toString()
+                    val category = DBHandler(activity).findByNameCategory(et_category.text.toString().toLowerCase())
+                    item.category_id = category.id
+                    DBHandler(activity).updateItem(item)
+                    activity.refreshList()
+                }
+            }
+            dialog.setNegativeButton("Відмінити"){
+                    _: DialogInterface, _: Int ->
+            }
+            dialog.show()
         }
         holder.iv_delete.setOnClickListener{
             DBHandler(activity).deleteItem(list[position].id)

@@ -1,13 +1,16 @@
 package com.example.todos
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todos.models.Category
+import com.example.todos.models.Item
 import kotlinx.android.synthetic.main.rv_category.view.*
 
 class CategoriesAdapter(val activity : CategoriesActivity, val list :MutableList<Category>):
@@ -31,6 +34,7 @@ class CategoriesAdapter(val activity : CategoriesActivity, val list :MutableList
             activity.startActivity(intent)
         }
     }
+
 
     class ViewHolder(v : View) : RecyclerView.ViewHolder(v){
         val tv_name : TextView = v.tv_name

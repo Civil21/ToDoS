@@ -1,14 +1,12 @@
 package com.example.todos
 
 import android.content.DialogInterface
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todos.models.Item
 import kotlinx.android.synthetic.main.activity_category_items.*
-import kotlinx.android.synthetic.main.activity_items.*
 
 class CategoryItemsActivity : ItemActivity() {
 
