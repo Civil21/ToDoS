@@ -38,7 +38,11 @@ class ItemsAdapter(val activity : AppCompatActivity, val list: MutableList<Item>
             list[position].isCompleted = !list[position].isCompleted
             if (list[position].isCompleted) {
                 list[position].comletedAt = Calendar.getInstance().getTime().toString()
-                holder.tv_time.text = "Завершено "+list[position].comletedAt
+                if(activity is MainActivity){
+                    list.removeAt(position)
+                }else {
+                    holder.tv_time.text = "Завершено " + list[position].comletedAt
+                }
             } else {
                 list[position].comletedAt = ""
                 holder.tv_time.text = "Створено "+list[position].createdAt

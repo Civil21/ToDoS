@@ -78,6 +78,26 @@ class DBHandler(val context: Context) : SQLiteOpenHelper(context, DB_NAME,null, 
         return result
     }
 
+    fun getChekedItems(isCompleted: Int): MutableList<Item> {
+        val result : MutableList<Item> =ArrayList()
+        val db =readableDatabase
+        val queryResult =db.rawQuery("SELECT * FROM $TABLE_ITEMS WHERE $COL_IS_COMPLETED = $isCompleted ORDER BY $COL_IS_COMPLETED ASC",null)
+        if(queryResult.moveToFirst()){
+            do{
+                val item =Item()
+                item.id =queryResult.getLong(queryResult.getColumnIndex(COL_ID))
+                item.text=queryResult.getString(queryResult.getColumnIndex(COL_TEXT))
+                item.category_id =queryResult.getLong(queryResult.getColumnIndex(COL_CATEGORY_ID))
+                item.createdAt =queryResult.getString(queryResult.getColumnIndex(COL_CREATED_AT))
+                item.isCompleted = queryResult.getInt(queryResult.getColumnIndex(COL_IS_COMPLETED))==1
+                item.comletedAt = queryResult.getString(queryResult.getColumnIndex(COL_CREATED_AT))
+                result.add(item)
+            }while(queryResult.moveToNext())
+        }
+        queryResult.close()
+        return result
+    }
+
     fun addItem(item :Item): Boolean {
         var db =writableDatabase
         var cv = ContentValues()
@@ -130,7 +150,7 @@ class DBHandler(val context: Context) : SQLiteOpenHelper(context, DB_NAME,null, 
 
     fun findByNameCategory(name: String): Category {
         val db =readableDatabase
-        val queryResult = db.rawQuery("SELECT * FROM $TABLE_CATEGORIES WHERE $COL_NAME = ?",
+        var queryResult = db.rawQuery("SELECT * FROM $TABLE_CATEGORIES WHERE $COL_NAME = ?",
             arrayOf(name)
         )
         val category = Category()
@@ -139,7 +159,7 @@ class DBHandler(val context: Context) : SQLiteOpenHelper(context, DB_NAME,null, 
             category.id = queryResult.getLong(queryResult.getColumnIndex(COL_ID))
         }else{
             addCategory(category)
-            val queryResult = db.rawQuery("SELECT * FROM $TABLE_CATEGORIES WHERE $COL_NAME = ?",
+            queryResult = db.rawQuery("SELECT * FROM $TABLE_CATEGORIES WHERE $COL_NAME = ?",
                 arrayOf(name)
             )
             queryResult.moveToFirst()
