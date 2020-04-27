@@ -100,7 +100,7 @@ class DBHandler(val context: Context) : SQLiteOpenHelper(context, DB_NAME,null, 
     }
     fun deleteItem(itemId:Long){
         val db = writableDatabase
-        db.delete(TABLE_ITEMS,"$COL_ID", arrayOf(itemId.toString()))
+        db.delete(TABLE_ITEMS,"$COL_ID=?", arrayOf(itemId.toString()))
     }
 
     fun getCategories() :MutableList<Category>{
