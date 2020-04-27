@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -45,6 +46,10 @@ class ItemsAdapter(val activity : AppCompatActivity, val list: MutableList<Item>
             holder.cb_item.isChecked = list[position].isCompleted
             DBHandler(activity).updateItem(list[position])
         }
+        holder.iv_delete.setOnClickListener{
+            DBHandler(activity).deleteItem(list[position].id)
+            list.removeAt(position)
+        }
     }
 
     class ViewHolder(v : View) : RecyclerView.ViewHolder(v){
@@ -52,6 +57,7 @@ class ItemsAdapter(val activity : AppCompatActivity, val list: MutableList<Item>
         val cb_item :CheckBox = v.cb_item
         val tv_category :TextView =v.tv_item_cagtegory
         val tv_time :TextView = v.tv_item_time
+        val iv_delete :ImageView = v.iv_delete
     }
 }
 

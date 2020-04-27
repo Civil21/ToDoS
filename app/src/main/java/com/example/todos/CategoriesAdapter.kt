@@ -23,6 +23,7 @@ class CategoriesAdapter(val activity : CategoriesActivity, val list :MutableList
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tv_name.text = list[position].name
+        holder.tv_count.text = DBHandler(activity).getCategoryItems(list[position].id).size.toString()
         holder.tv_name.setOnClickListener {
             val intent = Intent(activity,CategoryItemsActivity::class.java)
             intent.putExtra("intent_category_id",list[position].id)
@@ -32,5 +33,6 @@ class CategoriesAdapter(val activity : CategoriesActivity, val list :MutableList
 
     class ViewHolder(v : View) : RecyclerView.ViewHolder(v){
         val tv_name : TextView = v.tv_name
+        val tv_count : TextView = v.tv_count
     }
 }
