@@ -17,7 +17,7 @@ class GraphActivity: AppCompatActivity() {
         title = "Досягнення"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        
+
         ic_logo.startAnimation(AnimationUtils.loadAnimation(this,R.anim.splash_in))
         Handler().postDelayed({
             ic_logo.startAnimation(AnimationUtils.loadAnimation(this,R.anim.splash_out))
