@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todos.models.Category
@@ -33,11 +34,16 @@ class CategoriesAdapter(val activity : CategoriesActivity, val list :MutableList
             intent.putExtra("intent_category_name",list[position].name)
             activity.startActivity(intent)
         }
+        holder.iv_delete.setOnClickListener{
+            activity.dbHandler.deleteCategory(list[position].id)
+            activity.refreshList()
+        }
     }
 
 
     class ViewHolder(v : View) : RecyclerView.ViewHolder(v){
         val tv_name : TextView = v.tv_name
         val tv_count : TextView = v.tv_count
+        val iv_delete :ImageView = v.iv_delete
     }
 }
